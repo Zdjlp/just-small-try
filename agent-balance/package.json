@@ -1,0 +1,11 @@
+{
+  "name": "agent-balance",
+  "version": "0.1.0",
+  "description": "查多供应商 API 余额 + 统计 Codex/Claude Code 的 token 用量（零依赖 CLI）",
+  "type": "module",
+  "bin": {
+    "agent-balance": "./bin/agent-balance.js"
+  },
+  "keywords": ["balance", "token", "usage", "codex", "claude", "cli", "ai"],
+  "license": "MIT"
+}
