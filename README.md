@@ -1,3 +1,14 @@
+# AI 余额 & 用量监控
+
+本仓库包含两个工具，核心逻辑同源、都零依赖：
+
+| 工具 | 形态 | 适用人群 | 位置 |
+|---|---|---|---|
+| **dsh-balance** | DSH 插件 | DSH 用户在框架内看余额 + 项目用量 | 本仓库根目录（见下） |
+| **agent-balance** | 独立 CLI | 非 DSH 用户（Codex / Claude Code / 命令行）查余额 + 用量 | [`agent-balance/`](./agent-balance/) |
+
+---
+
 # dsh-balance
 
 DeepSeek Harness (DSH) 的**通用 API 余额 + 用量监控插件**：在对话输入框（Composer）下方显示多个 API 提供商的账户余额，以及当前项目的累计 token 用量与估算金额。
