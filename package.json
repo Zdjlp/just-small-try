@@ -1,0 +1,27 @@
+{
+  "name": "dsh-balance",
+  "version": "0.1.0",
+  "description": "通用 API 余额监控插件：在 Composer 下方显示 DeepSeek / OpenAI / OpenRouter / 自定义端点的余额，默认显示 API 原生币种，支持 settings 开关随时启停。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "balance",
+    "plugin"
+  ],
+  "dsh": {
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ],
+      "platform": "web"
+    }
+  }
+}
