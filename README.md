@@ -76,6 +76,7 @@ dsh-balance/
 | `openai` | `https://api.openai.com/v1/dashboard/billing/credit_grants` | `total_available` | USD | `OPENAI_API_KEY` |
 | `openrouter` | `https://openrouter.ai/api/v1/credits` | `data.total_credits` | USD | `OPENROUTER_API_KEY` |
 | `anthropic` | `https://api.anthropic.com/v1/organizations/{orgId}/credit_grants` | `data[0].effective_amount.usd` | USD | `ANTHROPIC_API_KEY` |
+| `moonshot` | `https://api.moonshot.cn/v1/users/me/balance` | `data.available_balance` | CNY | `MOONSHOT_API_KEY` |
 
 > Anthropic 需要在 provider 配置里填 `orgId`（organization id）；余额默认取第一个 credit grant 的 `effective_amount.usd`（best-effort），精确统计请改用自定义端点。
 
