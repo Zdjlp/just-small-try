@@ -1,0 +1,39 @@
+# 项目规则：余额与用量查询
+
+> 把本文件内容复制到你的项目根目录的 `AGENTS.md` 中，即可让 Codex / Claude Code 等 agent 在需要时主动查询。
+
+## 触发条件
+
+当用户消息涉及「余额 / 用量 / token / 花费 / 账户 / API 状态」等关键词，或明确要求查看 API 账户状态时，执行下面的查询。
+
+## 执行
+
+1. 查各供应商余额：
+
+   ```bash
+   agent-balance check
+   ```
+
+2. 查当前项目的 Codex / Claude Code 用量：
+
+   ```bash
+   agent-balance usage
+   ```
+
+## 输出要求
+
+- 用**一句简洁的中文**复述结果，含金额与币种（如「DeepSeek 余额 ¥49.16（CNY）」）；
+- 不要逐字粘贴命令的原始输出；
+- 若某供应商报「未配置 XXX_API_KEY」，提示用户：在 `~/.agent-balance.json` 的 `keys` 里补 key，或设置对应环境变量。
+
+## 前提
+
+`agent-balance` 需已安装到 PATH：
+
+```bash
+# 在 agent-balance 源码目录执行（本地开发）：
+npm link
+
+# 或待发布 npm 后全局安装：
+npm i -g agent-balance
+```
