@@ -5,8 +5,17 @@ import { dirname, join } from 'node:path'
 const CONFIG_FILE = join(homedir(), '.agent-balance.json')
 
 export const DEFAULTS = {
-  // 价格表（元/百万 tokens）
-  pricing: { inputPerM: 1, outputPerM: 3, cacheReadPerM: 0.1, currency: 'CNY' },
+  // 价格表（元/百万 tokens）——DeepSeek v4-pro 官方价（2026-08 定价页）。
+  // 空闲时段价；高峰时段（北京 9:00-12:00、14:00-18:00）为 peakFactor 倍。
+  // outputPerM 已含 reasoning（output_tokens 是总输出）。
+  pricing: {
+    currency: 'CNY',
+    model: 'deepseek-v4-pro',
+    inputPerM: 4.5,
+    outputPerM: 13.5,
+    cacheReadPerM: 0.15,
+    peakFactor: 2,
+  },
   // 可选：把 key 存这里（环境变量优先）
   keys: {},
   providers: [

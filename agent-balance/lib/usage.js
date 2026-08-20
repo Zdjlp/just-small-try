@@ -145,8 +145,16 @@ export async function computeUsage(cwd, pricing) {
     reasoning: codex.reasoning + claude.reasoning,
   }
   const p = pricing || {}
+  // output 已含 reasoning（Codex output_tokens 含 reasoning_output_tokens），不重复计。
   const cost = (tokens.input / 1e6) * (p.inputPerM || 0)
     + (tokens.cache / 1e6) * (p.cacheReadPerM || 0)
-    + ((tokens.output + tokens.reasoning) / 1e6) * (p.outputPerM || 0)
-  return { project: cwd, bySource: { codex, claude }, tokens, cost: Number(cost.toFixed(4)) }
+    + (tokens.output / 1e6) * (p.outputPerM || 0)
+  const peakFactor = p.peakFactor || 1
+  return {
+    project: cwd,
+    bySource: { codex, claude },
+    tokens,
+    cost: Number(cost.toFixed(4)),
+    costPeak: Number((cost * peakFactor).toFixed(4)),
+  }
 }

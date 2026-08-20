@@ -35,16 +35,17 @@ async function cmdUsage() {
   const codex = u.bySource.codex
   const claude = u.bySource.claude
   if (codex.sessionCount > 0) {
-    console.log(`Codex (${codex.sessionCount} 会话): ${formatTokens(codex.input + codex.output + codex.cache + codex.reasoning)} tok`)
+    console.log(`Codex (${codex.sessionCount} 会话): ${formatTokens(codex.input + codex.output + codex.cache)} tok`)
   }
   if (claude.sessionCount > 0) {
-    console.log(`Claude Code (${claude.sessionCount} 会话): ${formatTokens(claude.input + claude.output + claude.cache + claude.reasoning)} tok`)
+    console.log(`Claude Code (${claude.sessionCount} 会话): ${formatTokens(claude.input + claude.output + claude.cache)} tok`)
   }
   if (codex.sessionCount === 0 && claude.sessionCount === 0) {
     console.log('当前目录没有检测到 Codex / Claude Code 用量')
   } else {
-    const total = u.tokens.input + u.tokens.output + u.tokens.cache + u.tokens.reasoning
-    console.log(`合计: ${formatTokens(total)} tok · 估算 ¥${u.cost}`)
+    const total = u.tokens.input + u.tokens.output + u.tokens.cache // output 已含 reasoning
+    const range = u.costPeak && u.costPeak > u.cost ? `${u.cost}~${u.costPeak}` : `${u.cost}`
+    console.log(`合计: ${formatTokens(total)} tok · 估算 ¥${range}（空闲~高峰时段）`)
   }
 }
 
